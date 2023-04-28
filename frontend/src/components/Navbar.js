@@ -1,12 +1,26 @@
 import React from 'react'
+import axios from 'axios'
 import './css/Navbar.css'
+import { useCookies } from 'react-cookie';
 export const Navbar = (props) => {
-    
+    const [cookies,setCookie,removeCookie] = useCookies(['accessToken']);
     const invokeSubmit = (e)=>{
         e.preventDefault();
         e.stopPropagation();
         props.querySetter(document.getElementsByName("searchInput")[0].value);
 
+    }
+    const redirectLogin = (e)=>{
+        e.preventDefault();
+        window.location.href = "/authorize";
+    }
+    const logoutUser = (e)=>{
+        e.preventDefault();
+        axios.post('auth/logout')
+        .then(res=>res.data)
+        .then(response=>{
+           removeCookie("accessToken");
+        })
     }
     return (
         <div>
@@ -34,7 +48,12 @@ export const Navbar = (props) => {
                                 </form>        
                             </div>
                             <div className="header-item">
-                                <button type="button" className='btn btn-secondary' id="login-btn">Login</button>
+                                {cookies.accessToken?(
+                                    <button type="button" className='btn btn-secondary' id="login-btn" onClick={logoutUser}>Logout</button>
+                                ):(
+                                    <button type="button" className='btn btn-secondary' id="login-btn" onClick={redirectLogin}>Login</button>
+                                )}
+                                
                             </div>
                         </div>
                         <div id='shopping-cart-button'>

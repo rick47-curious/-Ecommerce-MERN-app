@@ -30,3 +30,23 @@ exports.fetchSearchResult = async(query)=>{
         console.log("Error: ",error);
     }
 }
+
+exports.login = async (request)=>{
+    try{
+        await client.connect();
+        let output = await client.db('sample_ecommerce').collection('userdata').findOne({email:request.email})
+        return output;
+    }catch(error){
+        console.log("Error: ",error);
+    }
+}
+
+exports.register = async(request)=>{
+    try{
+        await client.connect();
+        let output = await client.db('sample_ecommerce').collection('userdata').insertOne(request);
+        return output;
+    }catch(error){
+        console.log("Error: ",error);
+    }
+}

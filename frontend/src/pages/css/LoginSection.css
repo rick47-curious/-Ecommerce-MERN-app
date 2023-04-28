@@ -1,0 +1,25 @@
+#back-btn{
+    transform: translate(2rem,2rem);
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media(max-width:991px){
+#footer{
+    position:relative;
+    top:80%;
+}   
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}

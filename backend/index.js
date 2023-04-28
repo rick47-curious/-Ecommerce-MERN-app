@@ -1,13 +1,17 @@
 const express = require('express');
+const cookieParser = require('cookie-parser')
 const Books = require('./routes/Books')
+const authorization = require('./routes/Authorization')
 const port = process.env.PORT || 3001;
 const app = express();
 
 //Routes
 app.use("/books",Books);
+app.use("/auth",authorization)
 
 //Middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 
 
