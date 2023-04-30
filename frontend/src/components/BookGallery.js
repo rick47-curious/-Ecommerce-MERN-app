@@ -3,7 +3,7 @@ import './css/BookGallery.css'
 import axios from 'axios'
 export const BookGallery = (props) => {
      const [bookdata,setBookData] = useState();
-
+     const [cartObj,setCartObj] = useState(JSON.parse(window.localStorage.getItem("CartItem"))|| []);
      useEffect(()=>{
          axios.get(`/books/GetAllBooks?category=${props.category}`)
          .then(res => res.data).then(response=>{
@@ -20,6 +20,23 @@ export const BookGallery = (props) => {
             }
         },[props.query]);
 
+        const handleCartItem = (e)=>{
+            let button = e.currentTarget;
+            button.disabled = true;
+            props.countSetter(props.count+1);
+            let json = {
+                "id":props.count+1,
+                "itemImage":e.currentTarget.parentElement.parentElement.querySelector(".book-image").getAttribute("src"),
+                "itemName": e.currentTarget.parentElement.parentElement.querySelector(".book-name").innerHTML,
+                "price": e.currentTarget.parentElement.parentElement.querySelector(".price span").innerHTML.slice(1).trim(),
+                "count":1
+            }
+            let updatedArray = cartObj.concat(json)
+            setCartObj(updatedArray)   
+        }
+        useEffect(()=>{
+                window.localStorage.setItem("CartItem",JSON.stringify(cartObj))
+        },[cartObj])
   return (
     <div id="gallery-container">
         {/* Conditional based on filtering data or showing all data with count */}
@@ -51,7 +68,7 @@ export const BookGallery = (props) => {
                    <span className='fw-bold'>$ {item.price}</span>
               </div>
               <div className="button-area mt-2">
-               <button type='button' className='btn btn-success cart-btn fw-bold'>Add to Cart</button>
+               <button type='button' className='btn btn-success cart-btn fw-bold' onClick={handleCartItem}>Add to Cart</button>
               </div>
                </div>
             })}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie';
 import { Navbar } from '../components/Navbar'
 import { BookCategories } from '../components/BookCategories'
@@ -9,15 +9,22 @@ export const Homepage = () => {
   const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
   const [cookies, setCookie] = useCookies(['accessToken']);
+  const [itemCount,setItemCount] = useState(window.localStorage.getItem("shoppingCount") ||0);
   const handleFilter = (filterCategory) => {
     setCategory(filterCategory);
   }
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
   }
+  const handleCartItemCount = (item)=>{
+    setItemCount(item);
+  }
+  useEffect(()=>{
+      window.localStorage.setItem("shoppingCount",itemCount);
+  },[itemCount])
   return (
     <div>
-      <Navbar query={query} querySetter={handleSearch} />
+      <Navbar query={query} querySetter={handleSearch} count={itemCount}/>
       {cookies.accessToken ? (
         <>
           <BookCategories category={category} categorySetter={handleFilter} />
@@ -26,7 +33,7 @@ export const Homepage = () => {
       <BookCarousel />
       {cookies.accessToken ? (
         <>
-          <BookGallery category={category} query={query} />
+          <BookGallery category={category} query={query} count={itemCount} countSetter={handleCartItemCount} />
         </>
       ) : (
         <>

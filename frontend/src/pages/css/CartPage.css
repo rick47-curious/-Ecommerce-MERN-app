@@ -1,0 +1,83 @@
+.cart-container{
+    width:100vw;
+    height: 100vh;
+    background: url("https://wallpaperaccess.com/full/2338264.jpg") no-repeat;
+    color:white;
+}
+#cartTable{
+    width:75%;
+    height: auto;
+    transform:translateY(9rem);
+}
+.counter-span{
+    width:2rem;
+}
+
+.updateunits-section >button{
+    height: 2rem;
+}
+.updateunits-section button svg{
+    position: relative;
+    bottom: 0.3rem;
+}
+
+.item-image{
+    width:2rem;
+    height: 2rem;;
+}
+
+.header-row{
+    background-color: #8097fc;
+    height: 2.5rem;
+    color:black;
+}
+.header-row div:nth-child(1){
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+.header-row div:nth-child(2){
+    border-right:1px solid grey;
+}
+.header-row div:nth-child(3){
+    border-right:1px solid grey;
+}
+.header-row div:nth-child(4){
+    border-right:1px solid grey;
+}
+.header-row div:nth-child(5){
+    border-right:1px solid grey;
+}
+.result-row{
+    border:1px solid black;
+    height: 3rem;
+    
+}
+
+.item-text{
+    max-width: 200px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    
+}
+.result-row .col:nth-child(1){
+    
+    border-right: 1px solid black;
+}
+.result-row .col:nth-child(2){
+    border-right:1px solid black;
+}
+.result-row .col-3{
+    border-right:1px solid black;
+}
+.result-row .col:nth-child(3){
+    border-right:1px solid black;
+}
+
+#total-price{
+    margin-left: 80%;
+}
+
+.big-text{
+    font-size: 1.3rem;
+}
