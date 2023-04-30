@@ -2,6 +2,7 @@
     width:100vw;
     height: 100vh;
     background: url("https://wallpaperaccess.com/full/2338264.jpg") no-repeat;
+    background-size: cover;
     color:white;
 }
 #cartTable{
@@ -80,4 +81,60 @@
 
 .big-text{
     font-size: 1.3rem;
+}
+
+/* Responsiveness */
+@media(max-width:1162px){
+    #header{
+        transform: translateY(2rem);
+        color:black;
+    }
+    #cartTable{
+        background-color:rgba(230, 227, 227, 0.247);
+        color:black;
+    }
+    #total-price{
+        margin-left: 65%;
+    }
+}
+
+@media(max-width:678px){
+    .updateunits-section >button{
+        width:1.5rem;
+        height:1rem;
+    }
+    .updateunits-section > button >svg{
+        right:0.4rem;
+        bottom:0.8rem;
+        height:12px;
+    }
+    .counter-span{
+        position:relative;
+        top:0.05rem;
+        bottom:0.3rem;
+        right:0.2rem;
+    }
+    #total-price{
+        margin-left: 50%;
+    }
+}
+@media(max-width:483px){
+    #total-price{
+        margin-left: 30%;
+    }  
+
+    .header-row div{
+        font-size: 0.8rem;
+    }
+
+    .result-row{
+        font-size: 0.8rem;
+        height:5rem;
+    }
+    .result-row .item-image{
+        display: none;
+    }
+    .updateunits-section{
+        flex-direction: column;
+    }
 }

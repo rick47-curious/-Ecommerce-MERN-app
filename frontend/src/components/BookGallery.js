@@ -46,7 +46,7 @@ export const BookGallery = (props) => {
               return  <div className='grid-item' key={index}>
               <img className ="book-image" src={item.image_url} alt={`item-${index}`}/>
               <div className='desc mt-2'>
-                   <p className='book-name fs-4'>{item.title}</p>
+                   <p className='book-name fs-4' title={item.title}>{item.title}</p>
                    <p className='book-category grey-text'>{item.category}</p>
               </div>
               <div className="rating mt-2">
