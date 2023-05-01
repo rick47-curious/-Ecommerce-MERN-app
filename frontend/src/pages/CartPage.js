@@ -18,6 +18,7 @@ export const CartPage = () => {
     },[cartItems])
     const goBack = ()=>{
         window.history.back();
+        window.location.reload();
     }
     const handleIncrement = (e,id)=>{
         e.stopPropagation();
