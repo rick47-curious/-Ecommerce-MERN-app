@@ -1,4 +1,4 @@
 /*    /index.html    200
-/auth/*  https://ecommerce-backend-svc.onrender.com  200
-/books/*  https://ecommerce-backend-svc.onrender.com  200
-/order/*  https://ecommerce-backend-svc.onrender.com  200
+/auth/*  https://ecommerce-backend-svc.onrender.com/auth/:splat  200
+/books/*  https://ecommerce-backend-svc.onrender.com/books/:splat  200
+/order/*  https://ecommerce-backend-svc.onrender.com/order/:splat  200
