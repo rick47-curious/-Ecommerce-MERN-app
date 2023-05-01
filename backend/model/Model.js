@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 var client = new MongoClient(process.env.MONGODB_URI);
-
+/*----------------------------Below for the book gallery functionality--------------------------------------- */
 exports.fetchAllBooks = async(filterCategory)=>{
     try{
         await client.connect();
@@ -30,7 +30,7 @@ exports.fetchSearchResult = async(query)=>{
         console.log("Error: ",error);
     }
 }
-
+/*----------------------------Below for the login/register functionality--------------------------------------- */
 exports.login = async (request)=>{
     try{
         await client.connect();
@@ -50,3 +50,24 @@ exports.register = async(request)=>{
         console.log("Error: ",error);
     }
 }
+
+/*--------------------------------Below are for the order history functionality------------------------------- */
+exports.addOrder = async (request)=>{
+    try{
+        await client.connect();
+        let output = await client.db('sample_ecommerce').collection('orderdata').insertOne(request);
+        return output;
+    }catch(error){
+        console.log("Error: ",error);
+    }
+}
+
+exports.getOrderList = async(filter)=>{
+    try{
+        await client.connect();
+        let output = await client.db('sample_ecommerce').collection('orderdata').find(filter).toArray();
+        return output;
+    }catch(error){
+        console.log("Error: ",error);
+    }
+} 

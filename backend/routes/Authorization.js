@@ -26,7 +26,7 @@ app.post('/login',async (req,res)=>{
 
 app.post('/register',async (req,res)=>{
     let output = await loginPageController.registerUser(req.body);
-    if (output){
+    if (output.acknowledged){
         let token = jwt.sign({"registeredUser":req.body.email},process.env.JWT_SECRET_KEY);
         res.cookie("accessToken",token,{httpOnly:false,path:"/"}).status(200).json({
             "Message":"Registration Successfull"
