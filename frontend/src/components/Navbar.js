@@ -25,6 +25,9 @@ export const Navbar = (props) => {
     const redirectToCart = ()=>{
         window.location.href = "/cart";
     }
+    const redirectToOrderList = ()=>{
+        window.location.href = "/orderList";
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-lg" id="store-navbar">
@@ -40,12 +43,12 @@ export const Navbar = (props) => {
                         <div className="d-flex justify-content-between" id="navbar-container">
                             <div className="header-item">
                                 <form className="d-flex" role="search" onSubmit={invokeSubmit}>
-                                <div className="input-group">
+                                <div className="input-group" id="input-form">
                                     <input type="text" className="form-control" name="searchInput" placeholder="Search books..." aria-label="Example text with button addon" aria-describedby="button-addon1" id="search-bar"/>
                                     <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={invokeSubmit}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
                                     </button>
                                 </div>
                                 </form>        
@@ -55,8 +58,28 @@ export const Navbar = (props) => {
                                     <button type="button" className='btn btn-secondary' id="login-btn" onClick={logoutUser}>Logout</button>
                                 ):(
                                     <button type="button" className='btn btn-secondary' id="login-btn" onClick={redirectLogin}>Login</button>
-                                )}
-                                
+                                )}  
+                            </div>
+                            {cookies.accessToken?(
+                                <div className='header-item' id='linkToOrderList'>
+                                    <button className="btn" onClick={redirectToOrderList}>My OrderList</button>
+                                </div>
+                            ):(<></>)}
+                            <div className='header-item' id="action-dropdown">
+                                <div className="dropdown">
+                                    <button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown-button">
+                                        Go To
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li className="dropdown-item" onClick={redirectToOrderList}>My OrderList</li>
+                                        <hr style={{"margin":"0"}}/>
+                                        {cookies.accessToken?(
+                                            <li className='dropdown-item' onClick={logoutUser}>Logout</li>
+                                        ):(
+                                            <li className='dropdown-item' onClick={redirectLogin}>Login</li>
+                                        )}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div id='shopping-cart-button' onClick={redirectToCart}>

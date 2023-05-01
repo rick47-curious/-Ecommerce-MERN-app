@@ -12,7 +12,7 @@ app.get('/getOrderHistory',async (req,res)=>{
     if (result.length >0)
         res.status(200).json(result);
     else
-        res.send(500).json({
+        res.status(500).json({
             "Message":"Something went wrong, please try again later"
         })
 })

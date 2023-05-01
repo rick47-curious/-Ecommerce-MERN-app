@@ -33,9 +33,15 @@
 #login-btn{
     width:8rem;
 }
-
+#action-dropdown{
+    display: none;
+}
+#dropdown-button{
+    background-color:#528cd6 ;
+    color:white;
+}
 .header-item:nth-child(1){
-    margin-right: 5rem;
+    margin-right:6rem;
 }
 
 #search-bar{
@@ -45,19 +51,33 @@
     position:relative;
     right:-1rem;
 }
+
+#linkToOrderList > button{
+    transform:translateX(2rem);
+    background-color: #528cd6;
+    color:white;
+}
+
 /* Responsiveness */
-@media(max-width:996px){
+@media(max-width:1080px){
+    .header-item:nth-child(1){
+        margin-right: 1rem;
+    }
+}
+@media(max-width:1010px){
     #search-bar{
         width:15rem;
+    } 
+}
+@media(max-width:996px){
+    #search-bar{
+        width:10rem;
     } 
 }
 
 @media(max-width:898px) {
     #login-btn{
         width:5rem;
-    }
-    .header-item:nth-child(1){
-        margin-right: 2rem;
     }
     #shopping-cart-button{
         width:6.5rem;
@@ -68,15 +88,23 @@
     #search-bar{
         width:10rem;
     }
+    #linkToOrderList > button{
+        transform: translateX(1rem);
+        font-size:0.8rem;
+        width:6.2rem;
+    }
+    #login-btn{
+        font-size: 0.8rem;
+        width:4rem;
+    }
 }
 
 @media(max-width:674px){
     .header-item:nth-child(1){
         display: none;
     }
-
     #login-btn{
-        transform:translateX(4rem);
+        transform: translateX(-3rem);
     }
 }
 @media(max-width:520px){
@@ -90,8 +118,23 @@
 
 @media(max-width:490px){
     #login-btn{
-        transform:translateX(0rem);
+        transform:translateX(-1rem);
     } 
+    .navbar-brand{
+        margin:0;
+    }
+}
+
+@media(max-width:438px){
+    #linkToOrderList > button{
+        display: none;
+    }
+    #login-btn{
+        display: none;
+    }
+    #action-dropdown{
+        display:block;
+    }
 }
 
 @media(max-width:370px){

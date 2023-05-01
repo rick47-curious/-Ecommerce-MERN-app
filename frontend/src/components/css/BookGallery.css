@@ -42,11 +42,10 @@
         grid-template-columns: repeat(3, 1fr); /*3 columns*/
     }
 }
-
-@media(max-width:908px){
+@media(max-width:975px){
     #gridContainer{
         grid-template-columns: repeat(2, 1fr); /*2 columns*/
-    }
+    } 
 }
 @media(max-width:767px){
     #gridContainer{

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import './css/CartPage.css'
 
 export const CartPage = () => {
@@ -42,8 +43,39 @@ export const CartPage = () => {
              }
         })
     }
+    const appendAlert = (message,type)=>{
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+            ].join('')
+            alertPlaceholder.append(wrapper)
+    }
+    const submitOrder = ()=>{
+        axios.post('/order/setOrder')
+        .then(res => res)
+        .then(response=>{
+            let type = "";
+            if (response.status === 201){
+                type = "success"
+            }else if (response.status === 500){
+                type="danger"
+            }
+            appendAlert(response.data.Message,type);
+            setTimeout(()=>{
+                window.location.href = "/";
+                // Clearing the localstorage
+                window.localStorage.clear();
+            },3000);
+            
+        })
+    }
   return (
     <div className='cart-container'>
+        <div id="liveAlertPlaceholder" className='fixed-top'></div>
         <button type="button" className="btn btn-primary" id="back-btn" onClick={goBack}>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
@@ -91,7 +123,7 @@ export const CartPage = () => {
                     <div className='fw-bold me-2 big-text'>Total Price:</div>
                     <div className='fw-bold big-text'>$ {Math.round(itemTotal)} </div>
                 </div>
-                <button type='button' className='btn btn-outline-primary'>Place Order</button>
+                <button type='button' className='btn btn-primary' onClick={submitOrder}>Place Order</button>
             </div>
             </>
             ):(<>
